@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .header{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: fixed;
+            top: 0;
+        }
+        .upper_header{
+         display: flex;
+         justify-content: space-around;
+         width: 100%;
+         height: 60px;
+         background-color: whitesmoke;
+         padding: 10px;
+        }
+        .bottom_header{
+            display: flex;
+            width: 50%;
+            justify-content: center;
+            padding: 10px;
+            gap: 15px;
+           
+        }
+.input_section{
+    background-color: whitesmoke;
+    border: 0.1px solid rgb(204, 197, 197);
+    border-radius: 6px;
+}
+        .input_section>input{
+    border: none;
+    outline: none;
+    padding: 10px;
+        }
+        .btns>button{
+            padding: 12px;
+            width: 100px;
+            background-color: rgb(108, 10, 173);
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .students_div{
+            display: flex;
+            margin-top: 120px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .student{
+            width: 400px;
+            height: 200px;
+            background-color: whitesmoke;
+            display: flex;
+            border: 0.1px solid rgb(231, 229, 229);
+            flex-direction: column;
+            border-radius: 10px;
+            justify-content: space-around;
+            padding: 20px;
+            
+        }
+        .upper_header>button{
+            padding: 10px;
+            width: 110px;
+            background-color: rgb(214, 227, 243);
+            color: rgb(8, 106, 253);
+            border: none;
+            border-radius: 16px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+           <div class="upper_header">
+             <p>Hi Username</p>
+             <button>Login</button>
+           </div>
+           <div class="bottom_header">
+              <div class="input_section">
+                <input type="text" placeholder="Search Student" id="userip">
+                <img src="" alt="">
+              </div>
+              <div class="btns">
+                <button id="btn">Search</button>
+              </div>
+           </div>
+        </header>
+        <div class="students_div" id="studentsdiv">
+           
+        </div>
+       
+    </div>
+    <script>
+        let students = [
+    {name: "Salmaan Ahmad", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Riya Sharma", marks: '85%', class: '10th', address: 'india'},
+    {name: "Rohan Patel", marks: '70%', class: '12th', address: 'india'},
+    {name: "Deepak Yadav", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Mayank Yadav", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Shalini Namdev", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Akshay Kumar", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Ajay Devgon", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Salman Khan", marks: '38%', class: '3rd', address: 'india'},
+    {name: "Sharukh Khan", marks: '38%', class: '3rd', address: 'india'},
+    {name: "John Doe", marks: '55%', class: '5th', address: 'usa'},
+    {name: "Jane Smith", marks: '72%', class: '8th', address: 'canada'},
+    {name: "Emily Johnson", marks: '90%', class: '11th', address: 'uk'},
+    {name: "Michael Williams", marks: '63%', class: '6th', address: 'australia'},
+    {name: "David Brown", marks: '80%', class: '9th', address: 'france'},
+    {name: "Emma Jones", marks: '78%', class: '7th', address: 'germany'},
+    {name: "Oliver Wilson", marks: '45%', class: '4th', address: 'japan'},
+    {name: "Sophia Taylor", marks: '68%', class: '3rd', address: 'brazil'},
+    {name: "William Anderson", marks: '87%', class: '10th', address: 'mexico'},
+    {name: "Isabella Martinez", marks: '52%', class: '5th', address: 'argentina'}
+];
+
+         let studentsdiv = document.getElementById('studentsdiv')
+     
+        let input = document.getElementById("userip");
+        let btn = document.getElementById('btn')
+       
+        let newArr = students.map(item=>{
+            return `<div class ='student'>
+                      <p>Student Name: ${item.name}</p>
+                      <p>Marks: ${item.marks}</p>
+                      <p>Class: ${item.class}</p>
+                      <p>Address: ${item.address}</p>
+                </div>`
+            
+            }).join('');
+            studentsdiv.innerHTML = newArr;
+            let fin = input.value;
+
+            
+
+       btn.addEventListener('click',()=>{
+        let searchTerm = input.value.toLowerCase();
+    
+            let filteredStudents = students.filter(student => student.name.toLowerCase().includes(searchTerm));
+         
+         let search =filteredStudents.map(item => {
+                return `<div class ='student'>
+                            <p>Student Name: ${item.name}</p>
+                            <p>Marks: ${item.marks}</p>
+                            <p>Class: ${item.class}</p>
+                            <p>Address: ${item.address}</p>
+                        </div>`;
+            }).join(''); 
+        
+      
+        console.log(filteredStudents)
+        studentsdiv.innerHTML = search;
+       })
+    </script>
+</body>
+</html>
